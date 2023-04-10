@@ -2,6 +2,7 @@ package sim
 
 type population struct {
 	susceptible int64
+	exposed     int64
 	infectious  int64
 	recovered   int64
 }
