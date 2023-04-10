@@ -10,6 +10,7 @@ type population struct {
 func createPopulation(size int64, infected int64) *population {
 	currentPopulation := population{
 		susceptible: size - infected,
+		exposed:     0,
 		infectious:  infected,
 		recovered:   0,
 	}
