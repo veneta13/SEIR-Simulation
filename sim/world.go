@@ -6,7 +6,7 @@ type World struct {
 	board [WorldX][WorldY]Cell
 }
 
-func createWorld(population *Population) *World {
+func initRandomWorld(population *Population) *World {
 	world := World{
 		board: [WorldX][WorldY]Cell{},
 	}
