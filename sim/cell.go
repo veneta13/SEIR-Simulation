@@ -12,6 +12,7 @@ const (
 )
 
 type Cell struct {
-	cellType CellType
-	lifetime int64
+	cellType  CellType
+	lifetime  int64
+	countdown int64
 }
