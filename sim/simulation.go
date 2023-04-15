@@ -36,6 +36,22 @@ func simCellExposed(x int64, y int64, readWorld *World, writeWorld *World) {
 	writeWorld[x][y].countdown = readWorld[x][y].countdown - 1
 }
 
+func simCellInfected(x int64, y int64, readWorld *World, writeWorld *World) {
+	if readWorld[x][y].countdown == 1 {
+		if rand.Intn(8) < (RecoveryProbability * 100) {
+			writeWorld[x][y].cellType = Recovered
+			writeWorld[x][y].countdown = 0
+		} else {
+			writeWorld[x][y].cellType = Dead
+			writeWorld[x][y].countdown = 0
+		}
+		return
+	}
+
+	writeWorld[x][y].cellType = Infected
+	writeWorld[x][y].countdown = readWorld[x][y].countdown - 1
+}
+
 func simCell(x int64, y int64, readWorld *World, writeWorld *World) {
 	if readWorld[x][y].cellType == Susceptible {
 		simCellSusceptible(x, y, readWorld, writeWorld)
@@ -44,6 +60,11 @@ func simCell(x int64, y int64, readWorld *World, writeWorld *World) {
 
 	if readWorld[x][y].cellType == Exposed {
 		simCellExposed(x, y, readWorld, writeWorld)
+		return
+	}
+
+	if readWorld[x][y].cellType == Infected {
+		simCellInfected(x, y, readWorld, writeWorld)
 		return
 	}
 }
