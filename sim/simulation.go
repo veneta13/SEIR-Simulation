@@ -67,6 +67,10 @@ func simCell(x int64, y int64, readWorld *World, writeWorld *World) {
 		simCellInfected(x, y, readWorld, writeWorld)
 		return
 	}
+
+	if readWorld[x][y].cellType == Recovered || readWorld[x][y].cellType == Dead {
+		writeWorld[x][y].cellType = Free
+	}
 }
 
 func PlaySimulation() {
