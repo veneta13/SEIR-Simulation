@@ -53,6 +53,12 @@ func simCellInfected(x int64, y int64, readWorld *World, writeWorld *World) {
 }
 
 func simCell(x int64, y int64, readWorld *World, writeWorld *World) {
+	if readWorld[x][y].lifetime == 1 {
+		readWorld[x][y].cellType = Dead
+		writeWorld[x][y].countdown = 0
+		return
+	}
+
 	if readWorld[x][y].cellType == Susceptible {
 		simCellSusceptible(x, y, readWorld, writeWorld)
 		return
